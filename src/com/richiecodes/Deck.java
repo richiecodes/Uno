@@ -21,13 +21,10 @@ public class Deck {
     public List<Card> cards = new ArrayList<>();
     private final String[] COLORS = new String[]{"Blue", "Green", "Yellow", "Red"};
 
-    public Deck() {
-        buildDeck();
-    }
-
-    private void buildDeck() {
+    public void buildDeck() {
         dealNumericCards();
         dealSpecialCards();
+        Collections.shuffle(cards);
     }
 
     public void shuffle() {
