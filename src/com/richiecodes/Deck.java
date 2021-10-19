@@ -27,10 +27,6 @@ public class Deck {
         Collections.shuffle(cards);
     }
 
-    public void shuffle() {
-        Collections.shuffle(cards);
-    }
-
     private void dealNumericCards() {
         for (int i = 0; i < COLORS.length; i++) {
             for (int j = 0; j < 10; j++) {
