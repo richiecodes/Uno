@@ -6,16 +6,13 @@ import java.util.Scanner;
 
 public class Uno {
     private List<Player> players;
-    private Deck deck;
-    private Deck discardPile;
+    private Table table;
     private Scanner scanner = new Scanner(System.in);
-
+    private int activePlayer = 0;
 
     public Uno() {
         players = new ArrayList<>();
-        deck = new Deck();
-        discardPile = new Deck();
-        deck.buildDeck();
+        table = new Table();
         setGame();
     }
 
@@ -29,26 +26,41 @@ public class Uno {
             dealHandToPlayer(players.get(i));
         }
         cls();
-        players.get(0).showHand();
-        tableCard();
+        players.get(activePlayer).showHand();
     }
 
     public void dealHandToPlayer(Player player) {
         for (int i = 0; i < 7; i++) {
-            player.playerHand.cards.add(pullTopCard());
+            player.playerHand.cards.add((table.pullTopCard()));
         }
     }
 
-    public Card pullTopCard() {
-        Card pulledCard = deck.cards.get(0);
-        deck.cards.remove(pulledCard);
-        return pulledCard;
+    private void turn() {
+        System.out.println("Card on table: |[ " + table.tableCard + " ]|");
+        System.out.println("\nWhat will " + players.get(activePlayer).name + " do?: ");
+        int playerChoice = menuOption();
+
+        switch (playerChoice) {
+
+        }
     }
 
-    private void tableCard() {
-        System.out.println("\n\n\tCard on table: |" + deck.cards.get(0) + "|");
-        discardPile.cards.add(deck.cards.get(0));
-        deck.cards.remove(0);
+    private int menuOption() {
+        System.out.println("1. Play");
+        System.out.println("2. Quit");
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                //TODO add functionality
+                System.out.println("play");
+                return choice;
+
+            default:
+                System.exit(0);
+        }
+
+        return 0;
     }
 
     private void cls() {
