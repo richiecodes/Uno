@@ -41,13 +41,17 @@ public class Uno {
     }
 
     public void dealHandToPlayer(Player player) {
-        int HAND_SIZE = 7;
+        int HAND_SIZE = 40;
         for (int i = 0; i < HAND_SIZE; i++) {
             player.playerHand.cards.add((table.pullTopCardFromDeck()));
         }
     }
 
     private void round() {
+        if (table.deck.cards.isEmpty()) {
+            table.deck.cards.addAll(table.pile);
+            table.pile.clear();
+        }
         table.setTableCard();
         List<Card> pile = table.pile;
         Card pileCard = pile.get(0);
@@ -75,14 +79,7 @@ public class Uno {
         if (table.deck.cards.isEmpty()) {
             table.deck.cards.addAll(table.pile);
             table.pile.clear();
-        }
-        switch (table.pile.get(0).type) {
-            case "DRAW 2" -> {
-                if (!firstTurn) addCardsToPlayerHand(activePlayer, 2);
-            }
-            case "WILD DRAW 4" -> {
-                if (!firstTurn) addCardsToPlayerHand(activePlayer, 4);
-            }
+            table.setTableCard();
         }
         Console.cls();
         activePlayer.showHand();
@@ -109,6 +106,8 @@ public class Uno {
 
     private void playCard(Player activePlayer) {
         List<Card> playerHand = activePlayer.playerHand.cards;
+        int nextPlayer = players.indexOf(activePlayer) + 1;
+
         int choice;
         do {
             choice = Console.getInt(1, playerHand.size(), "Which card would you like to play?");
@@ -118,6 +117,19 @@ public class Uno {
             table.pile.add(0, playerHand.get(choice - 1));
             activePlayer.setScore(playerHand.get(choice - 1).faceValue);
             playerHand.remove(choice - 1);
+            if (nextPlayer >= players.size() - 1) {
+                nextPlayer = 0;
+            }
+
+            switch (table.pile.get(0).type) {
+                case "DRAW 2" -> {
+                    if (!firstTurn) addCardsToPlayerHand(activePlayer, 2);
+                }
+                case "WILD DRAW 4" -> {
+                    if (!firstTurn) addCardsToPlayerHand(activePlayer, 4);
+                }
+            }
+
         } else {
             Console.cls();
             System.out.println("Invalid card");
@@ -126,6 +138,10 @@ public class Uno {
     }
 
     private void drawCard(Player activePlayer) {
+        if (table.deck.cards.isEmpty()) {
+            table.deck.cards.addAll(table.pile);
+            table.pile.clear();
+        }
         activePlayer.playerHand.cards.add(table.pullTopCardFromDeck());
     }
 
@@ -139,8 +155,12 @@ public class Uno {
     }
 
     private boolean validCard(Card card) {
-        return card.color.equals(table.pile.get(0).color) || card.faceValue == table.pile.get(0).faceValue ||
-                card.type.equals("WILD") || card.type.equals("WILD DRAW 4");
+        if (table.pile.get(0).type.equals("WILD") || table.pile.get(0).type.equals("WILD DRAW 4"))
+            return true;
+        else {
+            return card.color.equals(table.pile.get(0).color) || card.faceValue == table.pile.get(0).faceValue ||
+                    card.type.equals("WILD") || card.type.equals("WILD DRAW 4");
+        }
     }
 
     private int menuOption() {

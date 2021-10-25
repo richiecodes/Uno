@@ -28,6 +28,11 @@ public class Table {
     }
 
     public void showCard() {
+        if (deck.cards.isEmpty()) {
+            deck.cards.addAll(pile);
+            pile.clear();
+            setTableCard();
+        }
         System.out.println("\nCard on table: |[ " + pile.get(0) + " ]|");
     }
 }

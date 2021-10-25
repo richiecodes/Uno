@@ -15,7 +15,7 @@ public class Player implements Actor {
         System.out.println(name.substring(0, 1).toUpperCase() + name.substring(1) + "'s hand: ");
         int cardNumber = 1;
         for (var card : playerHand.cards) {
-            System.out.print(cardNumber + ". |[ " + card + " ]| ");
+            System.out.print(cardNumber + ". |" + card + "|  ");
             cardNumber++;
         }
         System.out.println();
