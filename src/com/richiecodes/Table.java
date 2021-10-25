@@ -1,20 +1,30 @@
 package com.richiecodes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Table {
     public Deck deck;
-    public Deck pile;
-    public Card tableCard;
+    public List<Card> pile;
 
     public Table() {
         deck = new Deck();
-        pile = new Deck();
+        pile = new ArrayList<>();
         deck.buildDeck();
-        tableCard = pullTopCard();
     }
 
-    public Card pullTopCard() {
+    public Card pullTopCardFromDeck() {
         Card pulledCard = deck.cards.get(0);
         deck.cards.remove(pulledCard);
         return pulledCard;
+    }
+
+    public void setTableCard() {
+        pile.add(deck.cards.get(0));
+        deck.cards.remove(0);
+    }
+
+    public void showCard() {
+        System.out.println("\nCard on table: |[ " + pile.get(0) + " ]|");
     }
 }
