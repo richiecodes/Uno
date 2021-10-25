@@ -1,6 +1,5 @@
 package game;
 
-import actor.Hand;
 import actor.Player;
 import parts.Card;
 import ui.Console;
@@ -42,7 +41,7 @@ public class Uno {
     }
 
     public void dealHandToPlayer(Player player) {
-        int HAND_SIZE = 1;
+        int HAND_SIZE = 7;
         for (int i = 0; i < HAND_SIZE; i++) {
             player.playerHand.cards.add((table.pullTopCardFromDeck()));
         }
