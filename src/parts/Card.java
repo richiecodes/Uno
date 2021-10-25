@@ -1,9 +1,9 @@
-package com.richiecodes;
+package parts;
 
 public class Card {
-    byte faceValue;
-    String type;
-    String color;
+    public byte faceValue;
+    public String type;
+    public String color;
 
     public Card(byte faceValue, String type, String color) {
         this.faceValue = faceValue;
@@ -15,7 +15,7 @@ public class Card {
     public String toString() {
         return switch (type) {
             case "number" -> faceValue + " " + color;
-            case "WILD", "WILD DRAW 4", "BLANK" -> type;
+            case "WILD", "WILD DRAW 4" -> type;
             default -> type + " " + color;
         };
     }

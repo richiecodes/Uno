@@ -1,4 +1,4 @@
-package com.richiecodes;
+package ui;
 
 import java.util.Scanner;
 

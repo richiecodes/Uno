@@ -1,4 +1,7 @@
-package com.richiecodes;
+package game;
+
+import parts.Card;
+import parts.Deck;
 
 import java.util.ArrayList;
 import java.util.List;

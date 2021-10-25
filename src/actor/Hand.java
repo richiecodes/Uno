@@ -1,4 +1,6 @@
-package com.richiecodes;
+package actor;
+
+import parts.Card;
 
 import java.util.ArrayList;
 import java.util.List;

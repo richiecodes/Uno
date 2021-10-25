@@ -1,4 +1,4 @@
-package com.richiecodes;
+package parts;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -72,11 +72,11 @@ public class Deck {
         for (int i = 0; i < 4; i++) {
             cards.add(new Card((byte) 50, "WILD DRAW 4", "Black"));
         }
-
-        // Blank cards
-        for (int i = 0; i < 4; i++) {
-            cards.add(new Card((byte) 0, "BLANK", "Black"));
-        }
+//
+//        // Blank cards
+//        for (int i = 0; i < 4; i++) {
+//            cards.add(new Card((byte) 0, "BLANK", "Black"));
+//        }
     }
 
     public void printDeck() {

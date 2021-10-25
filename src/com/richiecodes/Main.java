@@ -1,5 +1,7 @@
 package com.richiecodes;
 
+import game.Uno;
+
 public class Main {
 
     public static void main(String[] args) {
