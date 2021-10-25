@@ -7,6 +7,8 @@ import ui.Console;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO FIX ALL BUGS
+
 public class Uno {
     private final List<Player> players;
     private final Table table;
